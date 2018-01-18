@@ -70,7 +70,7 @@
 "use strict";
 
 
-var _board = __webpack_require__(2);
+var _board = __webpack_require__(1);
 
 var _board2 = _interopRequireDefault(_board);
 
@@ -78,69 +78,111 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 alert('Helloworld');
 
+debugger;
+console.log(_board2.default);
+
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var emptyGrid = [[null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null]];
+
 var classes = ["F", "W", "C", "R", "X"];
 
 var Board = function () {
   function Board() {
     _classCallCheck(this, Board);
 
-    this.grid = emptyGrid;
-    this.col1 = this.grid[1];
-    this.col2 = this.grid[2];
-    this.col3 = this.grid[3];
-    this.col4 = this.grid[4];
-    this.col5 = this.grid[5];
-    this.col6 = this.grid[6];
-    this.col7 = this.grid[7];
-    this.col8 = this.grid[8];
+    this.grid = this.fill();
+    this.col1 = this.grid[0];
+    this.col2 = this.grid[1];
+    this.col3 = this.grid[2];
+    this.col4 = this.grid[3];
+    this.col5 = this.grid[4];
+    this.col6 = this.grid[5];
+    this.col7 = this.grid[6];
+    this.col8 = this.grid[7];
+    this.fill = this.fill.bind(this);
+    this.check3Vert = this.check3Vert.bind(this);
   }
 
   _createClass(Board, [{
     key: "fill",
     value: function fill() {
-      emptyGrid.forEach(function (column) {
-        column.map(function (space) {
+      var newGrid = emptyGrid.slice(0);
+      this.grid = newGrid;
+      return newGrid.map(function (column) {
+        return column.map(function (space) {
           if (space === null) {
-            space = classes[randClass];
+            return space = classes[Math.floor(Math.random() * classes.length)];
           }
-          return emptyGrid;
         });
       });
     }
-
-    //helper methods
-
-    //helper for Grid.fill
-
   }, {
-    key: "randClass",
-    value: function randClass() {
-      return classes[Math.floor(Math.random() * classes.length)];
+    key: "check3Vert",
+    value: function check3Vert() {
+      //checks the board for combinations of three in each COLUMN
+      return this.grid.map(function (column, i) {
+        return column.map(function (element, i) {
+          if (element === column[i + 1] && element === column[i + 2]) {
+            column[i + 1] = false;
+            column[i + 2] = false;
+            return false;
+          } else {
+            return element;
+          }
+        });
+      });
+    }
+  }, {
+    key: "check3Horz",
+    value: function check3Horz() {
+      //checks the board for combinations of three in each ROW
+      debugger;
+      var transposed = this;
+      transposed.grid = transposed.grid.transpose();
+      debugger;
+      var checked = transposed.check3Vert();
+      debugger;
+      return checked.transpose();
+    }
+  }, {
+    key: "remove3",
+    value: function remove3() {
+      //removes 3 matching pieces from the board
+    }
+  }, {
+    key: "refill",
+    value: function refill() {
+      //refills a column or row with new random heros
     }
   }]);
 
   return Board;
 }(); //class Grid
 
+Array.prototype.transpose = function () {
+  var _this = this;
 
-exports.default = Board;
+  var columns = Array.from({ length: this[0].length }, function () {
+    return Array.from({ length: _this.length });
+  });
+  for (var i = 0; i < this.length; i++) {
+    for (var j = 0; j < this[i].length; j++) {
+      columns[j][i] = this[i][j];
+    }
+  }
+  return columns;
+};
+// export default Board;
 
 /***/ })
 /******/ ]);
