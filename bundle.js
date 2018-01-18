@@ -101,14 +101,14 @@ var Board = function () {
     _classCallCheck(this, Board);
 
     this.grid = this.fill();
-    this.col1 = this.grid[0];
-    this.col2 = this.grid[1];
-    this.col3 = this.grid[2];
-    this.col4 = this.grid[3];
-    this.col5 = this.grid[4];
-    this.col6 = this.grid[5];
-    this.col7 = this.grid[6];
-    this.col8 = this.grid[7];
+    // this.col1 = this.grid[0]
+    // this.col2 = this.grid[1]
+    // this.col3 = this.grid[2]
+    // this.col4 = this.grid[3]
+    // this.col5 = this.grid[4]
+    // this.col6 = this.grid[5]
+    // this.col7 = this.grid[6]
+    // this.col8 = this.grid[7]
     this.fill = this.fill.bind(this);
     this.check3Vert = this.check3Vert.bind(this);
   }
@@ -130,17 +130,20 @@ var Board = function () {
     key: "check3Vert",
     value: function check3Vert() {
       //checks the board for combinations of three in each COLUMN
-      return this.grid.map(function (column, i) {
+      var newGrid = this.grid.slice(0);
+      return newGrid.map(function (column, i) {
         return column.map(function (element, i) {
           if (element === column[i + 1] && element === column[i + 2]) {
-            column[i + 1] = false;
-            column[i + 2] = false;
-            return false;
+            column[i] = 'match';
+            column[i + 1] = 'match';
+            column[i + 2] = 'match';
+            return 'match';
           } else {
             return element;
           }
         });
       });
+      this.grid = newGrid;
     }
   }, {
     key: "check3Horz",
@@ -155,16 +158,40 @@ var Board = function () {
     key: "remove3",
     value: function remove3() {
       //removes 3 matching pieces from the board
+      var newGrid = this.grid.map(function (column) {
+        column = column.removeMatches();
+        return column;
+      });
+      this.grid = newGrid;
     }
   }, {
     key: "refill",
     value: function refill() {
-      //refills a column or row with new random heros
+      var newGrid = this.grid.slice(0);
+      this.grid.map(function (column) {
+        while (column.length < 8) {
+          column.push(classes[Math.floor(Math.random() * classes.length)]);
+        }
+      });
     }
   }]);
 
   return Board;
 }(); //class Grid
+
+
+//HELPER METHODS
+
+
+Array.prototype.removeMatches = function () {
+  var newArray = [];
+  this.forEach(function (el) {
+    if (el !== 'match') {
+      newArray.push(el);
+    }
+  });
+  return newArray;
+};
 
 Array.prototype.transpose = function () {
   var _this = this;
