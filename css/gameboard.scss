@@ -1,0 +1,31 @@
+
+.gameboard {
+  height: 400px;
+  width: 416px;
+  border: 1px solid black;
+  display: flex;
+  margin: 0 auto;
+  // justify-content: space-between;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 400px;
+}
+
+.col div {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+
+}
+
+.testClass {
+  background-color: red;
+}
