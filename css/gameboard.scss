@@ -1,3 +1,17 @@
+.window {
+  height:800px;
+  width:auto;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  // background-image: url(../Assets/apocalypse.gif);
+  // background-image: url(../Assets/openroad.gif);
+  background-image: url(../Assets/ruin.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
 
 .gameboard {
   height: 400px;
