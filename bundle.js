@@ -146,12 +146,9 @@ var Board = function () {
     key: "check3Horz",
     value: function check3Horz() {
       //checks the board for combinations of three in each ROW
-      debugger;
       var transposed = this;
       transposed.grid = transposed.grid.transpose();
-      debugger;
       var checked = transposed.check3Vert();
-      debugger;
       return checked.transpose();
     }
   }, {
