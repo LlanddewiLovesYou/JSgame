@@ -1,21 +1,58 @@
+@font-face {
+  font-family: EightBit;
+  src: url(../assets/EightBit.ttf)
+}
+
+@font-face {
+  font-family: ferrum;
+  src: url(../assets/ferrum.otf)
+}
+
+body {
+  background-image: url(../assets/rpg_background_cover_db32.png);
+  // background-image: url(../Assets/openroad.gif);
+  // background-image: url(../Assets/ruin.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title {
+  font-family: ferrum;
+  color: blue;
+  font-size: 100px;
+  font-style:italic;
+  text-decoration: underline;
+  background: -webkit-linear-gradient(#eee, #1061e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+
 .window {
-  height:800px;
+  height:1000px;
   width:auto;
-  border: 1px solid red;
+
   display: flex;
   align-items: center;
-  // background-image: url(../Assets/apocalypse.gif);
+  background-image: url(../assets/apocalypse.gif);
   // background-image: url(../Assets/openroad.gif);
-  background-image: url(../Assets/ruin.gif);
+  // background-image: url(../Assets/ruin.gif);
   background-repeat: no-repeat;
   background-size: cover;
 
 }
 
+.hero {
+  height: 60px;
+  padding: 0;
+  margin: 0;
+}
+
 
 .gameboard {
-  height: 400px;
-  width: 416px;
+  height: 600px;
+  width: 616px;
   border: 1px solid black;
   display: flex;
   margin: 0 auto;
@@ -25,19 +62,51 @@
 
 .col {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
-  height: 400px;
+  height: 600px;
 }
 
 .col div {
-  height: 50px;
-  width: 50px;
+  height: 75px;
+  width: 75px;
   border: 1px solid black;
   justify-content: center;
   text-align: center;
   align-content: center;
+  color: white;
+  // background-image: url(../assets/stone4.png);
+  // background-repeat: no-repeat;
+  // background-size: cover;
+}
 
+.stone4 {
+  background-image: url(../assets/stone4.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stone3 {
+  background-image: url(../assets/stone3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stone2 {
+  background-image: url(../assets/stone2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.instructions {
+  color: white;
+  text-shadow: 2px 2px #55575b;
+  width: 340px;
+  text-overflow: ellipsis;
+  font-family: EightBit;
+  background-color:rgba(0, 0, 0, 0.5);  padding: 20px;
+  margin-right: 130px;
+  font-size: 20px;
 }
 
 .testClass {
