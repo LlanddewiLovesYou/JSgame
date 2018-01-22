@@ -59,6 +59,9 @@ body {
   /* background-image: url(../assets/ruin.gif); */
   background-repeat: no-repeat;
   background-size: cover;
+  flex-direction: row;
+  justify-content: space-between;
+
 
 }
 
@@ -125,8 +128,35 @@ body {
   text-overflow: ellipsis;
   font-family: EightBit;
   background-color:rgba(0, 0, 0, 0.5);  padding: 20px;
-  margin-right: 130px;
-  font-size: 20px;
+  margin: 130px auto;
+  font-size: 30px;
+}
+
+.console {
+  font-family: EightBit;
+  font-size: 50px;
+  color: white;
+  text-shadow: 2px 2px #55575b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.points {
+  margin-left: 20px
+}
+
+.turns {
+  margin-left: 20px
+}
+
+.play-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:rgba(0, 0, 0, 0.5);  padding: 20px;
+  margin-left: 200px;
 }
 
 .testClass {
