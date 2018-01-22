@@ -107,6 +107,9 @@ var Board = function () {
     this.grid = this.fill();
     this.fill = this.fill.bind(this);
     this.check3Vert = this.check3Vert.bind(this);
+    this.remove3 = this.remove3.bind(this);
+    this.refill = this.refill.bind(this);
+    this.columnGravity = this.columnGravity.bind(this);
     this.move = [];
   }
 
@@ -145,6 +148,7 @@ var Board = function () {
       if (this.move.length === 2) {
         this.swapHeroes(this.move[0], this.move[1]);
         this.move = [];
+        setInterval(game.playerTurn(), 1000);
       }
     }
   }, {
@@ -251,9 +255,7 @@ var Board = function () {
       var newGrid = this.grid.slice(0);
       this.columnGravity();
       this.grid.map(function (column, i) {
-        debugger;
         while (column.length < 8) {
-          debugger;
           var heroClass = classes[Math.floor(Math.random() * classes.length)];
           column.push(heroClass);
           _this.addHero(heroClass, [i, column.length - 1]);
@@ -261,7 +263,7 @@ var Board = function () {
       });
     }
 
-    // NOTE: MOVE HANDLING
+    // NOTE: MOVE HANDLING, GIT TEST
 
   }, {
     key: "swapHeroes",
@@ -290,7 +292,7 @@ Array.prototype.removeMatches = function (i) {
     if (el !== 'match') {
       newArray.push(el);
     } else {
-      debugger;
+
       $l("#" + i + "," + j).empty();
     }
   });
