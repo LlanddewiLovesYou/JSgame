@@ -159,6 +159,36 @@ body {
   margin-left: 200px;
 }
 
+.enemy {
+  display:flex;
+  flex-direction: row;
+}
+
+.enemy #enemy {
+  height: 200px;
+  width: 200px;
+}
+
+.message-text {
+  color: black;
+position: relative;
+left: 115px;
+bottom: 115px;
+z-index: 1;
+font-size: 28px;
+max-width: 180px
+}
+
+.message-area img {
+  position: relative;
+  height: 125px;
+  width: 400px;
+
+}
+
+.enemy img {
+}
+
 .testClass {
   background-color: red;
 }
