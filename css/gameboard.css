@@ -1,11 +1,11 @@
 @font-face {
   font-family: EightBit;
-  src: url(../assets/EightBit.ttf)
+  src: url('../assets/EightBit.ttf')
 }
 
 @font-face {
-  font-family: ferrum;
-  src: url(../assets/ferrum.otf)
+  font-family: FinalFantasy;
+  src: url('../assets/finalf.woff') format('woff')
 }
 
 body {
@@ -14,24 +14,27 @@ body {
   background-image: url(../Assets/ruin.gif); */
   background-repeat: no-repeat;
   background-size: cover;
-  background: -webkit-linear-gradient(#202123, #495368);
+  background: black;
 
 }
 
 .title {
-  font-family: ferrum;
-  color: blue;
+  font-family: FinalFantasy;
+  color: white;
   font-size: 100px;
-  width:730px;
+  text-align: center;
+  width:100%;
   /* font-style:italic; */
-  text-decoration: underline;
-  background: -webkit-linear-gradient(#eee, #1061e5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  border-bottom: 5px solid #1061e5;
+  /* text-decoration: underline; */
+  /* background: -webkit-linear-gradient(#eee, #1061e5); */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
+  border-bottom: 2px solid white;
+  -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: grey;
   margin: 0;
   margin-bottom: 30px;
-
+  padding-top: 10px
 }
 
 .t-block {
@@ -55,8 +58,8 @@ body {
   display: flex;
   align-items: center;
   /* background-image: url(../assets/apocalypse.gif); */
-  background-image: url(../assets/openroad.gif);
-  /* background-image: url(../assets/ruin.gif); */
+  /* background-image: url(../assets/openroad.gif); */
+  background-image: url(../assets/ruin.gif);
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: row;
