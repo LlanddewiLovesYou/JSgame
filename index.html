@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Penultimate Fantasy Crush</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="assets/chocobo.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="./css/gameboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <script type="text/javascript" src="./lib/YayQuery/main.js"></script>
@@ -15,7 +17,18 @@
 
   <span class='t-block'>
     <!-- <img src="./assets/chocobo.png"> -->
-    <h2 class="title">PENUTIMATE FANTASY CRUSH</h2>
+    <h2 class="title">PENUTIMATE FANTASY CRUSH <p>CREATED BY: IAN DEL DUCA</p></h2>
+    <div class="wrapper style1 align-center">
+      <div class="inner">
+        <ul class="icons">
+          <li><a href="https://iandelduca.com" class="icon style2 fa fa-globe"><span class="label">    iandelduca.com</span></a></li>
+          <li><a href="https://github.com/LlanddewiLovesYou" class="icon style2 fa fa-github"><span class="label">    Git Hub</span></a></li>
+          <li><a href="https://www.linkedin.com/in/ian-del-duca-a6a90285/" class="icon style2 fa fa-linkedin"><span class="label">    LinkedIn</span></a></li>
+          <li><a href="https://angel.co/ian-del-duca" class="icon style2 fa fa-angellist"><span class="label">    AngelList</span></a></li>
+        </ul>
+        <p>&copy; Ian Del Duca. 2018 </p>
+      </div>
+    </div>
   </span>
 
 <div class="window">
@@ -25,11 +38,11 @@
 
   <div class="console">
     <div class="enemy">
-      <img src="./assets/Tiamat-ff1-gba.png" id='enemy' class='animated'>
-      <div class="message-area" id='message'>
+      <div id='enemy' class='animated'></div>
+      <!-- <img src="./assets/Tiamat-ff1-gba.png" id='enemy' class='animated'> -->
+      <div class="message-area" id='message'></div>
         <!-- <div class="message-text" id='message-text'>Rawr! I'm totes scary Y'all!</div>
         <img id='speech-bubble' src="./assets/pixel-speech-bubble-favicon.png"/> -->
-      </div>
     </div>
     <div class="score">
       HP:<span class="points"></span>

@@ -31,7 +31,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "save": "^2.3.2",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "Font-Awesome": "^5.0.6"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
