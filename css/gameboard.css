@@ -41,6 +41,17 @@ body {
   font-size: 30px;
 }
 
+.title p span img {
+  height: 30px;
+  width: 30px;
+}
+
+.title p span {
+  color:white;
+  font-family: EightBit;
+  font-size: 30px
+}
+
 .t-block {
   display: flex;
   flex-direction: row;
@@ -49,10 +60,13 @@ body {
 .t-block img {
   height: 135px;
   width :135px;
-
-
 }
 
+ul p {
+  color: white;
+  font-family: EightBit;
+  font-size: 20px;
+}
 
 
 .window {

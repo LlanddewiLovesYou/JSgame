@@ -110,7 +110,10 @@ var Board = function () {
     this.remove3 = this.remove3.bind(this);
     this.refill = this.refill.bind(this);
     this.columnGravity = this.columnGravity.bind(this);
+    this.moves = 20;
+    this.points = 10000;
     this.move = [];
+    this.limit = new Sound('assets/sound/limit.mp3');
   }
 
   // NOTE: BOARD SETUP
@@ -129,29 +132,53 @@ var Board = function () {
         });
       });
       this.addHeroes();
-      $l('.gameboard').on('click', this.makeMove.bind(this));
+
       return this.grid;
     }
-  }, {
-    key: "makeMove",
-    value: function makeMove(click) {
-      var clickPos = click.target;
-      var pos = void 0;
-      if (!clickPos.id) {
-        pos = clickPos.parentElement.id.split(',');
-        console.log(pos);
-      } else {
-        pos = clickPos.id.split(',');
-        console.log(pos);
-      }
-      this.move.push(pos);
-      if (this.move.length === 2) {
-        // $l(`#${pos[0]}, ${pos[1]}`).addClass('animate flip')
-        this.swapHeroes(this.move[0], this.move[1]);
-        this.move = [];
-        setInterval(game.playerTurn(), 1000);
-      }
-    }
+
+    // readyBoard() {
+    //   let matches = true
+    //   while (matches === true) {
+    //     this.check3Horz()
+    //     this.check3Vert()
+    //     console.log(this.anyMatches(this))
+    //     matches = this.anyMatches(this)
+    //     this.remove3()
+    //     this.refill()
+    //   }
+    // }
+    //
+    //
+    // anyMatches(board) {
+    //   board.grid.forEach((column) => {
+    //     column.forEach((space) => {
+    //       if (space === 'match') {
+    //         return true
+    //       }
+    //     })
+    //   })
+    //   return false
+    // }
+
+    // makeMove(click) {
+    //     let clickPos = click.target
+    //     let pos
+    //     if (!clickPos.id) {
+    //        pos = clickPos.parentElement.id.split(',')
+    //        console.log(pos)
+    //     } else {
+    //        pos = clickPos.id.split(',')
+    //        console.log(pos)
+    //     }
+    //     this.move.push(pos)
+    //     if (this.move.length === 2) {
+    //       // $l(`#${pos[0]}, ${pos[1]}`).addClass('animate flip')
+    //       this.swapHeroes(this.move[0], this.move[1])
+    //       this.move = []
+    //       setTimeout(game.playerTurn(), 3000)
+    //     }
+    // }
+
   }, {
     key: "addHeroes",
     value: function addHeroes() {
@@ -167,29 +194,31 @@ var Board = function () {
   }, {
     key: "addHero",
     value: function addHero(heroClass, pos) {
+      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+
       var i = pos[0];
       var j = pos[1];
       var DOMel = void 0;
       switch (heroClass) {
         case 'F':
           DOMel = $l("#" + i + "," + j);
-          DOMel.append('<img class="hero" src="./assets/fighter.png"></img>');
+          DOMel.append("<img class=\"hero animated " + animation + "\" src=\"./assets/fighter.png\"></img>");
           break;
         case 'W':
           DOMel = $l("#" + i + "," + j);
-          DOMel.append('<img class="hero" src="./assets/blackmage.png"></img>');
+          DOMel.append("<img class=\"hero animated " + animation + "\" src=\"./assets/blackmage.png\"></img>");
           break;
         case 'C':
           DOMel = $l("#" + i + "," + j);
-          DOMel.append('<img class="hero" src="./assets/cleric.png"></img>');
+          DOMel.append("<img class=\"hero animated " + animation + "\" src=\"./assets/cleric.png\"></img>");
           break;
         case 'R':
           DOMel = $l("#" + i + "," + j);
-          DOMel.append('<img class="hero" src="./assets/rogue.png"></img>');
+          DOMel.append("<img class=\"hero animated " + animation + "\" src=\"./assets/rogue.png\"></img>");
           break;
         case 'X':
           DOMel = $l("#" + i + "," + j);
-          DOMel.append('<img class="hero" src="./assets/chocobo.png"></img>');
+          DOMel.append("<img class=\"hero animated " + animation + "\" src=\"./assets/chocobo.png\"></img>");
           break;
       }
     }
@@ -235,6 +264,20 @@ var Board = function () {
       this.grid = newGrid;
     }
   }, {
+    key: "matchAnimation",
+    value: function matchAnimation() {
+      var _this = this;
+
+      this.grid.forEach(function (column, i) {
+        column.forEach(function (el, j) {
+          if (el === 'match') {
+            _this.limit.play();
+            $l("#" + i + "," + j).children().animate('zoomOut');
+          }
+        });
+      });
+    }
+  }, {
     key: "columnGravity",
     value: function columnGravity() {
       for (var i = 0; i < 8; i++) {
@@ -251,7 +294,7 @@ var Board = function () {
   }, {
     key: "refill",
     value: function refill() {
-      var _this = this;
+      var _this2 = this;
 
       var newGrid = this.grid.slice(0);
       this.columnGravity();
@@ -259,7 +302,7 @@ var Board = function () {
         while (column.length < 8) {
           var heroClass = classes[Math.floor(Math.random() * classes.length)];
           column.push(heroClass);
-          _this.addHero(heroClass, [i, column.length - 1]);
+          _this2.addHero(heroClass, [i, column.length - 1], 'lightSpeedIn');
         }
       });
     }
@@ -284,7 +327,7 @@ var Board = function () {
 }(); //class Board
 
 
-//HELPER METHODS
+//NOTE: HELPER METHODS
 
 
 Array.prototype.removeMatches = function (i) {
@@ -293,7 +336,6 @@ Array.prototype.removeMatches = function (i) {
     if (el !== 'match') {
       newArray.push(el);
     } else {
-
       $l("#" + i + "," + j).empty();
     }
   });
@@ -301,10 +343,10 @@ Array.prototype.removeMatches = function (i) {
 };
 
 Array.prototype.transpose = function () {
-  var _this2 = this;
+  var _this3 = this;
 
   var columns = Array.from({ length: this[0].length }, function () {
-    return Array.from({ length: _this2.length });
+    return Array.from({ length: _this3.length });
   });
   for (var i = 0; i < this.length; i++) {
     for (var j = 0; j < this[i].length; j++) {
